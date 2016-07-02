@@ -10,7 +10,7 @@ en:
       math:
         
         avg:
-          trigger: "math.avg"
+          trigger: "avg"
           description: "Computes the average value out of comma separated number list."
 
         calc:

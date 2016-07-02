@@ -10,5 +10,6 @@
 
 .project
 .byebug_history
-/log/
 ricer4.*.yml
+/log/
+/vendor/

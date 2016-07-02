@@ -13,7 +13,7 @@ module Ricer4::Plugins::Math
     has_setting name: :precision, scope: :user, permission: :public, type: :integer, default: 128, min: 1, max: 2048
 
     # Own description function for function description    
-    def plugin_description
+    def plugin_description(long)
       t(:description,
         constants: join(MATH_CONSTANTS.keys.collect{|c|c.upcase}),
         functions: join(MATH_FUNCTIONS),
@@ -82,9 +82,8 @@ module Ricer4::Plugins::Math
     
     def transform_term(term)
       bot.log.debug("Maths#transform_term() from: #{term}")
-      term.replace(" #{term} ")
       term.downcase!
-#      term.gsub!(',', '.')
+      term.gsub!(',', '.')
       MATH_CONSTANTS.each{|k, v| term.gsub!(Regexp.new("([^a-z])#{k}([^a-z])")) { "#{$1} #{v} #{$2}" } }
       term.gsub!(/\s+/, ' ')
       #term.gsub!(/(\d) (\d)/) { "#{$1}*#{$2}" }
